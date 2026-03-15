@@ -2,8 +2,8 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const videos = [
-  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid1.mp4' },
-  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid2.mp4' },
+  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid1_web.mp4' },
+  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid2_web.mp4' },
 ]
 
 export default function VideoSection() {
