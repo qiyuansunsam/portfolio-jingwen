@@ -2,8 +2,8 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const videos = [
-  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid1_web.mp4' },
-  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid2_web.mp4' },
+  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid1_web.mp4', poster: '/images/thumbnails/vid1.jpg' },
+  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid2_web.mp4', poster: '/images/thumbnails/vid2.jpg' },
 ]
 
 export default function VideoSection() {
@@ -172,6 +172,7 @@ export default function VideoSection() {
                     <video
                       ref={(el) => { videoRefs.current[i] = el }}
                       src={video.src}
+                      poster={video.poster}
                       preload="auto"
                       playsInline
                       onEnded={() => setPlayingIdx(-1)}
