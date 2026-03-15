@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { ScoreInline } from './ScrollScore'
 
 const containerVariants = {
   hidden: {},
@@ -100,7 +101,7 @@ export default function HeroSection() {
         </motion.div>
 
         {/* Decorative lines */}
-        <div className="relative mt-12 flex items-center justify-center gap-4">
+        <div className="relative mt-10 flex items-center justify-center gap-4">
           <motion.div
             className="h-px bg-gradient-to-l from-electric/50 to-transparent"
             initial={{ width: 0 }}
@@ -121,14 +122,15 @@ export default function HeroSection() {
           />
         </div>
 
-        <motion.p
-          className="mt-8 text-cream/30 text-sm tracking-[0.4em] uppercase font-body"
-          initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ delay: 1.8, duration: 1 }}
+        {/* Score — takes real layout space below the text */}
+        <motion.div
+          className="mt-6"
+          initial={{ opacity: 0, scale: 0.4 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 2.0, type: 'spring', stiffness: 70, damping: 14 }}
         >
-          Art &amp; Design Portfolio
-        </motion.p>
+          <ScoreInline value="6" />
+        </motion.div>
       </motion.div>
 
       {/* Scroll indicator */}

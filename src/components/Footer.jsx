@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { ScoreInline } from './ScrollScore'
 
 const links = [
   { label: 'Email', href: 'mailto:alexis@example.com', icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
@@ -10,16 +11,22 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 py-32 pb-40 px-6 text-center">
+    <footer className="relative z-10 py-24 pb-32 px-6 text-center">
       {/* Decorative top line */}
-      <div className="max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-cream/15 to-transparent mb-16" />
+      <div className="max-w-[200px] mx-auto h-px bg-gradient-to-r from-transparent via-cream/15 to-transparent mb-12" />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1.5 }}
+        className="flex flex-col items-center"
       >
+        {/* Score — dedicated section at top of footer */}
+        <div className="mb-10">
+          <ScoreInline value="10" />
+        </div>
+
         <p className="font-display text-3xl md:text-4xl text-cream/50 italic">
           Jingwen Sun
         </p>
@@ -56,7 +63,6 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Tagline */}
         <p className="text-cream/15 text-xs tracking-[0.2em] font-body mt-10 max-w-md mx-auto leading-relaxed">
           Open to collaborations &amp; commissions
         </p>
@@ -70,7 +76,7 @@ export default function Footer() {
         </div>
       </motion.div>
 
-      <div className="mt-16 h-px max-w-xs mx-auto bg-gradient-to-r from-transparent via-cream/10 to-transparent" />
+      <div className="mt-12 h-px max-w-xs mx-auto bg-gradient-to-r from-transparent via-cream/10 to-transparent" />
     </footer>
   )
 }
