@@ -61,7 +61,21 @@ body {
 
 /* Hide cursor on desktop (custom cursor replaces it) */
 @media (pointer: fine) {
-  html, a, button { cursor: none; }
+  * { cursor: none !important; }
+}
+
+/* Video controls: hidden by default, show on hover */
+video::-webkit-media-controls {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+video:hover::-webkit-media-controls {
+  opacity: 1;
+}
+/* Firefox */
+video:not(:hover)::-moz-range-track,
+video:not(:hover)::-moz-range-thumb {
+  visibility: hidden;
 }
 
 /* ---- Glitch Text Effect ---- */

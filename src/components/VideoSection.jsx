@@ -33,6 +33,8 @@ export default function VideoSection() {
     }
   }, [playingIdx])
 
+  const sectionRef = useRef(null)
+
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'ArrowRight') goTo(active + 1)
@@ -49,7 +51,7 @@ export default function VideoSection() {
   // Center formula: translate the track so item[active] center aligns with viewport center
 
   return (
-    <section className="relative z-10 py-24 md:py-36 overflow-hidden">
+    <section ref={sectionRef} className="relative z-10 py-24 md:py-36 overflow-hidden">
       <motion.div
         className="text-center mb-12 md:mb-16"
         initial={{ opacity: 0, y: 20 }}
@@ -144,10 +146,9 @@ export default function VideoSection() {
                   transition={{ type: 'spring', stiffness: 180, damping: 26, mass: 0.9 }}
                   onClick={() => {
                     if (!isFocused) goTo(i)
-                    else togglePlay(i)
                   }}
-                  data-cursor="text"
-                  data-cursor-text={isFocused ? (isPlaying ? 'Pause' : 'Play') : 'View'}
+                  data-cursor={!isFocused ? 'text' : undefined}
+                  data-cursor-text={!isFocused ? 'View' : undefined}
                   style={{ willChange: 'width, opacity' }}
                 >
                   <div className="absolute inset-0 rounded-2xl border border-cream/[0.06] z-10 pointer-events-none" />
@@ -175,37 +176,18 @@ export default function VideoSection() {
                       poster={video.poster}
                       preload="auto"
                       playsInline
+                      controls
                       onEnded={() => setPlayingIdx(-1)}
                       className="w-full h-full object-cover"
                     />
 
-                    <div
-                      className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
-                        isFocused
-                          ? isPlaying ? 'opacity-0 hover:opacity-100' : 'opacity-100'
-                          : 'opacity-0'
-                      }`}
-                      style={{ background: isFocused ? 'rgba(10,14,39,0.2)' : 'transparent' }}
-                    >
-                      {isFocused && (
-                        <motion.div
-                          className="w-14 h-14 md:w-18 md:h-18 rounded-full border border-cream/20 flex items-center justify-center"
-                          initial={{ scale: 0.6, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          transition={{ delay: 0.1, type: 'spring', stiffness: 200, damping: 15 }}
-                        >
-                          {isPlaying ? (
-                            <svg className="w-5 h-5 md:w-6 md:h-6 text-cream/70" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
-                            </svg>
-                          ) : (
-                            <svg className="w-5 h-5 md:w-6 md:h-6 ml-0.5 text-cream/70" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M8 5v14l11-7z" />
-                            </svg>
-                          )}
-                        </motion.div>
-                      )}
-                    </div>
+                    {/* Dimmed overlay for unfocused cards — pointer-events-none so controls work */}
+                    {!isFocused && (
+                      <div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{ background: 'rgba(10,14,39,0.3)' }}
+                      />
+                    )}
 
                     <div
                       className="absolute inset-0 pointer-events-none"

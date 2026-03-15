@@ -42,12 +42,7 @@ export default function IntroVideo() {
           </span>
         </motion.div>
 
-        <motion.div
-          className="relative overflow-hidden rounded-2xl cursor-pointer group"
-          onClick={handleToggle}
-          data-cursor="text"
-          data-cursor-text={isPlaying ? 'Pause' : 'Play'}
-        >
+        <div className="relative overflow-hidden rounded-2xl group">
           <div className="absolute inset-0 rounded-2xl border border-cream/[0.06] z-10 pointer-events-none" />
           <div
             className="absolute -inset-px rounded-2xl z-0 pointer-events-none"
@@ -64,31 +59,9 @@ export default function IntroVideo() {
               poster="/images/thumbnails/intro.jpg"
               preload="auto"
               playsInline
-              onEnded={() => setIsPlaying(false)}
+              controls
               className="w-full h-full object-cover"
             />
-
-            <div
-              className={`absolute inset-0 flex items-center justify-center bg-deep-blue/30 transition-opacity duration-500 ${
-                isPlaying ? 'opacity-0 hover:opacity-100' : 'opacity-100'
-              }`}
-            >
-              <motion.div
-                className="w-20 h-20 md:w-24 md:h-24 rounded-full border border-cream/20 flex items-center justify-center group-hover:border-cream/35 transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {isPlaying ? (
-                  <svg className="w-7 h-7 md:w-8 md:h-8 text-cream/70" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
-                  </svg>
-                ) : (
-                  <svg className="w-7 h-7 md:w-8 md:h-8 ml-1 text-cream/70" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                )}
-              </motion.div>
-            </div>
 
             <div
               className="absolute inset-0 pointer-events-none"
@@ -97,7 +70,7 @@ export default function IntroVideo() {
               }}
             />
           </div>
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   )

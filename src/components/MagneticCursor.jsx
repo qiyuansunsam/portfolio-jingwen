@@ -1,11 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
-import { motion, useSpring, useMotionValue } from 'framer-motion'
+import { motion, useSpring } from 'framer-motion'
 
 export default function MagneticCursor() {
   const [visible, setVisible] = useState(false)
-  const [cursorVariant, setCursorVariant] = useState('default') // default | hover | image | text
+  const [cursorVariant, setCursorVariant] = useState('default')
   const [cursorText, setCursorText] = useState('')
-  const cursorSize = useMotionValue(20)
 
   const springConfig = { damping: 25, stiffness: 250, mass: 0.5 }
   const x = useSpring(0, springConfig)
@@ -13,6 +12,7 @@ export default function MagneticCursor() {
   const size = useSpring(20, { damping: 20, stiffness: 300 })
 
   const isCoarse = useRef(false)
+  const variantRef = useRef('default')
 
   useEffect(() => {
     if (window.matchMedia('(pointer: coarse)').matches) {
@@ -31,15 +31,18 @@ export default function MagneticCursor() {
       if (target) {
         const type = target.getAttribute('data-cursor')
         setCursorVariant(type)
+        variantRef.current = type
         if (type === 'text') {
           setCursorText(target.getAttribute('data-cursor-text') || 'View')
         }
         size.set(type === 'image' ? 80 : type === 'text' ? 64 : type === 'hover' ? 48 : 20)
       } else if (e.target.closest('a, button, [data-magnetic]')) {
         setCursorVariant('hover')
+        variantRef.current = 'hover'
         size.set(48)
       } else {
         setCursorVariant('default')
+        variantRef.current = 'default'
         size.set(20)
         setCursorText('')
       }
@@ -65,7 +68,7 @@ export default function MagneticCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 z-[60] pointer-events-none flex items-center justify-center"
+      className="fixed top-0 left-0 z-[9999] pointer-events-none flex items-center justify-center overflow-visible"
       style={{
         x,
         y,
@@ -103,7 +106,7 @@ export default function MagneticCursor() {
 
       {/* Text label (for text variant) */}
       {cursorVariant === 'text' && cursorText && (
-        <span className="text-cream text-[10px] tracking-[0.15em] uppercase font-body select-none">
+        <span className="absolute whitespace-nowrap text-cream text-[10px] tracking-[0.15em] uppercase font-body select-none">
           {cursorText}
         </span>
       )}
