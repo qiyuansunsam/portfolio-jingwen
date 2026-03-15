@@ -60,7 +60,7 @@ export default function IntroVideo() {
           <div className="relative aspect-video bg-deep-blue rounded-2xl overflow-hidden">
             <video
               ref={videoRef}
-              src="/video/intro.mp4"
+              src="https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/intro.mp4"
               preload="auto"
               playsInline
               onEnded={() => setIsPlaying(false)}
