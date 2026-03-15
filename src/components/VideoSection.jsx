@@ -2,8 +2,8 @@ import { useRef, useState, useCallback } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
 
 const videos = [
-  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid1_web.mp4', poster: '/images/thumbnails/vid1.jpg' },
-  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid2_web.mp4', poster: '/images/thumbnails/vid2.jpg' },
+  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid1_web.mp4', poster: '/images/thumbnails/vid2.jpg' },
+  { src: 'https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/vid2_web.mp4', poster: '/images/thumbnails/vid1.jpg' },
 ]
 
 export default function VideoSection() {
