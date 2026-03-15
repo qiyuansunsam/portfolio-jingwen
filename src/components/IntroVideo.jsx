@@ -61,6 +61,7 @@ export default function IntroVideo() {
             <video
               ref={videoRef}
               src="https://pub-27af52cfbbc24f91a5999b01e87e3d97.r2.dev/intro.mp4"
+              poster="/images/thumbnails/intro.jpg"
               preload="auto"
               playsInline
               onEnded={() => setIsPlaying(false)}
