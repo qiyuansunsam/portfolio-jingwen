@@ -68,7 +68,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative h-screen flex flex-col items-center justify-center overflow-hidden "
       style={{ position: 'relative' }}
     >
       {/* Floating decorative elements */}
